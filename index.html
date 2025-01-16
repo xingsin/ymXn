@@ -19,7 +19,7 @@
     z-index: 1;
     border-radius: 1vw 1vw 0vw 0vw;
   }
-  #in1{
+  #in1,#in2{
     width: 60%;
     height: 42px;
     background-color: white;
@@ -30,7 +30,7 @@
     top: 150px;
     left: 35px;
   }
-  #bu1{
+  #bu1,#bu2{
     width: 25%;
     height: 44px;
     background-color: #4579fb;
@@ -58,6 +58,13 @@
     float: left;
     margin-left: 10px;
     opacity: 85%;
+    transition: transform 0.3s ease-in-out;
+  }
+  .d1:hover{
+    transform: scale(1.08);
+  }
+  .d2:hover {
+    transform: scale(1.08);
   }
   .d2{
     position: absolute;
@@ -72,11 +79,9 @@
   #im2{
     width: 50px;
     height: 50px;
-    border-radius: 50px;
-    position: absolute;
-    left: 5px;
     margin-top: 10px;
-    margin-left: 10px;
+    position: absolute;
+    margin-left: -90px;
   }
   #b2{
     position: absolute;
@@ -89,18 +94,18 @@
     width: 20px;
     height: 20px;
     opacity: 90%;
-    margin-top: 10px;
+    margin-top: 12.5px;
     margin-left: 10px;
   }
   .d5{
     width: 100%;
-    height: 40px;
+    height: 45px;
     background-color: white;
-    line-height: 40px;
+    line-height: 45px;
     position: fixed;
     opacity: 95%;
     border-radius: 1vw 1vw 0vw 0vw;
-
+    z-index: 999999;
   }
   #b3{
     font-size: 13px;
@@ -113,7 +118,6 @@
     width: 50px;
     height: 50px;
     margin-top: 10px;
-    margin-left: 15px;
     position: absolute;
     margin-left: -90px;
   }
@@ -135,20 +139,24 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    margin-top: 10px;
+    margin-top: 12.5px;
     right: 10px;
   }
   .d3,.d4{
-    width: 45%;
+    width: 220px;
     height: 270px;
     background-color: white;
     box-shadow: 2px 2px 20px #bcbbbb;
     border-radius: 2vh;
     float: left;
-    margin-left: 17px;
+    margin-left: 3%;
   }
   .d3 b{
-    margin-left: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .d4{
+    margin-left: 4%;
   }
   #im4{
     width: 90%;
@@ -163,11 +171,11 @@
   .d6{
     width: 100px;
     height: 30px;
-    background: linear-gradient(to left, #fdcb68,#df990c);
+    background: linear-gradient(to left, #f6d696,#fcc24f);
     color: white;
     border-radius: 1vw;
     position: absolute;
-    margin-left: 15px;
+    margin-left: 10px;
   }
   .d6 p{
     color: white;
@@ -199,19 +207,14 @@
   background-color: gray;
   border-radius: 2vh;
   position: fixed;
-  right: 8px;
+  right: 3%;
   margin-top: 50px;
+  background-color: rgba(238, 236, 236, 0.5);
+  transition: transform 0.3s ease-in-out;
  }
- #im7{
-  width: 35px;
-  height: 35px;
-  position: fixed;
-  margin-top: 58px;
-  margin-left: -43px;
-
- }
- .prent{
-  opacity: 10%;
+ .nav-itembox:hover{
+  background-color: rgba(255,255,255,0.5);
+  transform: scale(1.08);
  }
  .nav-itembbox{
   width: 50px;
@@ -219,21 +222,160 @@
   background-color: gray;
   border-radius: 2vh;
   position: fixed;
-  right: 8px;
+  right: 3%;
   margin-top: 115px;
-  opacity: 10%;
+  background-color: rgba(241, 240, 240, 0.5);
+  transition: transform 0.3s ease-in-out;
+ }
+ .nav-itembbox:hover{
+  background-color: rgba(255,255,255,0.5);
+  transform: scale(1.08);
+ }
+ #im7{
+  width: 35px;
+  height: 35px;
+  margin-top: 7.5px;
  }
  #im8{
   width: 32px;
   height: 32px;
-  position: fixed;
-  margin-top: 123px;
-  margin-left: -40px;
+  margin-top: 7.5px;
  }
+ .d7{
+  width: 55%;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 9999992;
+  transition: transform 1s ease;
+    /* 初始将div向左偏移自身宽度的距离，即完全移出可视区域 */
+    transform: translateX(-100%);
+    opacity: 0.9;
+ }
+ .d7.show {
+    display: block;
+    /* 将div的偏移量设置为0，即回到正常位置，触发从左到右的过渡动画 */
+    transform: translateX(0);
+    opacity: 0.9;
+}
+.d7.hide{
+  margin-left: calc(100% + 20px); /* 这里20px可以根据实际需求调整，让其先完全移出右侧可视区域 */
+    opacity: 0; /* 透明度变为0，隐藏起来 */
+    transition: all 0.5s ease; /* 设置过渡效果，和显示动画保持一致的过渡时间和缓动函数，所有属性变化在0.5秒内以缓动方式过渡 */
+    pointer-events: none; /* 隐藏时让元素不接收鼠标事件，避免一些误操作 */
+}
+ .fg{
+  width: 100%;
+  height: 100vh;
+  background: rgb(52, 52, 52);
+  opacity: 90%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999991;
+  display: none;
+ }
+ .home{
+  width: 90%;
+  height: 50px;
+  background-color: #f9f9f9;
+  opacity: 90%;
+  line-height: 50px;
+  margin-top: 60px;
+  border-radius: 1vw;
+ }
+ .home li{
+  position: absolute;
+  left: 10%;
+ }
+ #yh{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 15px;
+  margin-top: 10px;
+ }
+ #b6{
+  position: absolute;
+  left: 65px;
+  margin-top: 13px;
+ }
+ #b7{
+  position: absolute;
+  left: 65px;
+  margin-top: 15px;
+  color: #cccaca;
+  font-size: 13px;
+ }
+ .d8{
+  width: 90px;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-radius: 1vw;
+  margin-top: 50px;
+  position: absolute;
+  left: 20px;
+ }
+ #p1{
+  color: gray;
+  margin-top: 1px;
+  margin-left: 5px;
+ }
+ #b8{
+  color: #4579fb;
+  margin-top: 20px;
+  font-size: 18px;
+  position: absolute;
+  margin-left: -5px;
+ }
+ .d9{
+  width: 90px;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-radius: 1vw;
+  margin-top: 50px;
+  position: absolute;
+  left: 140px;
+ }
+ .souy{
+  width: 100%;
+    height: 300px;
+    background-color: #fff;
+    position: absolute;
+    top: -300px; /* 初始位置在顶部上方，隐藏 */
+    left: 0;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out; /* 过渡效果，用于上下移动和淡入淡出 */
+    visibility: hidden; /* 初始时隐藏，使用 visibility 代替 display */
+    opacity: 0; /* 初始透明度为 0 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+    z-index: 9999999; /* 确保在 ah 元素之上 */
+ }
+ .ah {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色，作为阴影 */
+    visibility: hidden; /* 初始时隐藏，使用 visibility 代替 display */
+    z-index: 9999991; /* 确保在 souy 元素下方 */
+    transition: opacity 0.5s ease-in-out; /* 过渡效果，用于淡入淡出 */
+    opacity: 0; /* 初始透明度为 0 */
+}
+.show {
+    top: 0;
+    visibility: visible; /* 显示元素 */
+    opacity: 1; /* 完全不透明 */
+}
+#in2{
+  box-shadow: 1px 1px 10px gray;
+}
 </style>
 <body>
   <div class="d5">
-   <img id="ham" src="ham.png">
+   <img onclick="d()" id="ham" src="ham.png">
    <img id="sou" src="sou.png">
   </div>
     <img id="im1" src="ecy2.jpg">
@@ -253,25 +395,45 @@
      </div><br><br>
      <div class="d3">
       <img id="im4" onclick="c()" src="tp.png"><br>
-      <b>整蛊朋友的查分网站 可以给朋友搞一个低分 html网页</b>
+      <b>整蛊朋友的查分网站 可以给朋友搞一个 html网页</b>
       <div class="d6">
         <p>免费资源</p>
       </div><br>
-      <img id="im5" src="ecy2.jpg">
-      <p id="p1">1分钟前</p>
-      <img id="im6" src="like.png">
+
      </div>
      <div class="d4"></div>
  <div class="prent">
   <div onclick="a()" class="nav-itembox">
-      
+    <img id="im7" src="home.png">
   </div>
  </div>
- <img id="im7" src="home.png">
+ 
   <div onclick="b()" class="nav-itembbox">
-      
+    <img id="im8" src="user.png">
   </div>
-  <img id="im8" src="user.png">
+  
+ <div onclick="e()" class="fg"></div>
+  <div class="d7">
+    <div onclick="g()" class="home">
+      <li>首页</li>
+    </div>
+    <img onclick="f()" id="yh" src="yh.jpg">
+    <b id="b6">xingning</b><br>
+    <b id="b7">这个人很懒 什么也没说...</b>
+    <div class="d8">
+      <p id="p1">文章></p>
+      <b id="b8">0</b>
+    </div>
+    <div class="d9">
+      <p id="p1">评论></p>
+      <b id="b8">0</b>
+    </div>
+  </div>
+  <div class="ah"></div>
+  <div class="souy">
+    <input placeholder="      你想输入点什么呢" id="in2" type="text">
+    <button id="bu2">搜索</button>
+  </div>
     </center>
     <script>
       function a(params) {
@@ -283,6 +445,52 @@
       function c(params) {
         window.location.href = "shop.html"
       }
+      function d(params) {
+        let dd = document.querySelector(".d7");
+        dd.style.display = "block"
+        let bb = document.querySelector(".fg").style.display = "block";
+        dd.classList.remove('hide');
+        dd.classList.add('show');
+      }
+      function e(params) {
+        let dd = document.querySelector(".d7");
+        dd.classList.remove('show');
+        dd.classList.add('hide');
+        let bb = document.querySelector(".fg").style.display = "none"
+      }
+      function f(params) {
+        window.location.href = "user.html"
+      }
+      function g(params) {
+        window.location.href = "index.html"
+      }
+      document.addEventListener("DOMContentLoaded", function() {
+    const souButton = document.getElementById("sou");
+    const souyDiv = document.querySelector(".souy");
+    const ahDiv = document.querySelector(".ah");
+
+    souButton.addEventListener("click", function() {
+        souyDiv.classList.toggle("show");
+        ahDiv.classList.toggle("show");
+    });
+
+    souyDiv.addEventListener("transitionend", function(event) {
+        if (event.propertyName === "top") {
+            if (!souyDiv.classList.contains("show")) {
+                souyDiv.style.pointerEvents = "none";
+                ahDiv.style.pointerEvents = "none";
+            } else {
+                souyDiv.style.pointerEvents = "auto";
+                ahDiv.style.pointerEvents = "auto";
+            }
+        }
+    });
+
+    ahDiv.addEventListener("click", function() {
+        souyDiv.classList.remove("show");
+        ahDiv.classList.remove("show");
+    });
+});
     </script>
 </body>
 </html>
