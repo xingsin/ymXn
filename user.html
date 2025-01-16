@@ -117,13 +117,162 @@
     margin-top: -20px;
     margin-left: -20px;
   }
- 
+  .d7{
+  width: 55%;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  transition: transform 1s ease;
+    /* 初始将div向左偏移自身宽度的距离，即完全移出可视区域 */
+    transform: translateX(-100%);
+ }
+ .d7.show {
+    display: block;
+    /* 将div的偏移量设置为0，即回到正常位置，触发从左到右的过渡动画 */
+    transform: translateX(0);
+}
+.d7.hide{
+  margin-left: calc(100% + 20px); /* 这里20px可以根据实际需求调整，让其先完全移出右侧可视区域 */
+    opacity: 0; /* 透明度变为0，隐藏起来 */
+    transition: all 0.5s ease; /* 设置过渡效果，和显示动画保持一致的过渡时间和缓动函数，所有属性变化在0.5秒内以缓动方式过渡 */
+    pointer-events: none; /* 隐藏时让元素不接收鼠标事件，避免一些误操作 */
+}
+ .fg{
+  width: 100%;
+  height: 100vh;
+  background: rgb(52, 52, 52);
+  opacity: 90%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+ }
+ .home{
+  width: 90%;
+  height: 50px;
+  background-color: #f9f9f9;
+  opacity: 90%;
+  line-height: 50px;
+  margin-top: 60px;
+  border-radius: 1vw;
+ }
+ .home li{
+  position: absolute;
+  left: 10%;
+ }
+ #yh{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  position: absolute;
+  left: 15px;
+  margin-top: 10px;
+ }
+ #b6{
+  position: absolute;
+  left: 65px;
+  margin-top: 13px;
+ }
+ #b7{
+  position: absolute;
+  left: 65px;
+  margin-top: 15px;
+  color: #cccaca;
+  font-size: 13px;
+ }
+ .d8{
+  width: 90px;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-radius: 1vw;
+  margin-top: 50px;
+  position: absolute;
+  left: 20px;
+ }
+ #p1{
+  color: gray;
+  margin-top: 1px;
+  margin-left: 5px;
+ }
+ #b8{
+  color: #4579fb;
+  margin-top: 0px;
+  font-size: 18px;
+  position: absolute;
+  margin-left: 15px;
+ }
+ .d9{
+  width: 90px;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-radius: 1vw;
+  margin-top: 50px;
+  position: absolute;
+  left: 140px;
+ }
+ .souy{
+  width: 100%;
+    height: 300px;
+    background-color: #fff;
+    position: absolute;
+    top: -300px; /* 初始位置在顶部上方，隐藏 */
+    left: 0;
+    transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out; /* 过渡效果，用于上下移动和淡入淡出 */
+    visibility: hidden; /* 初始时隐藏，使用 visibility 代替 display */
+    opacity: 0; /* 初始透明度为 0 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+    z-index: 9999999; /* 确保在 ah 元素之上 */
+ }
+ .ah {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色，作为阴影 */
+    visibility: hidden; /* 初始时隐藏，使用 visibility 代替 display */
+    z-index: 9999991; /* 确保在 souy 元素下方 */
+    transition: opacity 0.5s ease-in-out; /* 过渡效果，用于淡入淡出 */
+    opacity: 0; /* 初始透明度为 0 */
+}
+.show {
+    top: 0;
+    visibility: visible; /* 显示元素 */
+    opacity: 1; /* 完全不透明 */
+}
+#in2{
+  width: 60%;
+    height: 42px;
+    background-color: white;
+    opacity: 93%;
+    border-radius: 5vw 0vw 0vw 5vw;
+    border: 1px solid white;
+    position: absolute;
+    top: 150px;
+    left: 35px;
+  box-shadow: 1px 1px 10px gray;
+}
+#bu2{
+  width: 25%;
+    height: 44px;
+    background-color: #4579fb;
+    color: white;
+    border-radius: 0vw 5vw 5vw 0vw;
+    border: none;
+    position: absolute;
+    top: 150px;
+    right: 13%;
+    opacity: 90%;
+}
     </style>
 </head>
 <body>
     <div class="header">
         <div class="head">
-            <img id="ham" src="ham.png">
+            <img onclick="d()" id="ham" src="ham.png">
             <img id="sou" src="sou.png">
         </div>
         <div class="banner">
@@ -151,6 +300,75 @@
             </div>
         </div>
     </div>
-    
+    <div onclick="e()" class="fg"></div>
+  <div class="d7">
+    <div onclick="g()" class="home">
+      <li>首页</li>
+    </div>
+    <img onclick="f()" id="yh" src="yh.jpg">
+    <b id="b6">xingning</b><br>
+    <b id="b7">这个人很懒 什么也没说...</b>
+    <div class="d8">
+      <p id="p1">文章></p>
+      <b id="b8">0</b>
+    </div>
+    <div class="d9">
+      <p id="p1">评论></p>
+      <b id="b8">0</b>
+    </div>
+  </div>
+  <div class="ah"></div>
+  <div class="souy">
+    <input placeholder="      你想输入点什么呢" id="in2" type="text">
+    <button id="bu2">搜索</button>
+  </div>
+    <script>
+        function d(params) {
+        let dd = document.querySelector(".d7");
+        dd.style.display = "block"
+        let bb = document.querySelector(".fg").style.display = "block";
+        dd.classList.remove('hide');
+        dd.classList.add('show');
+      }
+      function e(params) {
+        let dd = document.querySelector(".d7");
+        dd.classList.remove('show');
+        dd.classList.add('hide');
+        let bb = document.querySelector(".fg").style.display = "none"
+      }
+      function f(params) {
+        window.location.href = "user.html"
+      }
+      function g(params) {
+        window.location.href = "index.html"
+      }
+      document.addEventListener("DOMContentLoaded", function() {
+    const souButton = document.getElementById("sou");
+    const souyDiv = document.querySelector(".souy");
+    const ahDiv = document.querySelector(".ah");
+
+    souButton.addEventListener("click", function() {
+        souyDiv.classList.toggle("show");
+        ahDiv.classList.toggle("show");
+    });
+
+    souyDiv.addEventListener("transitionend", function(event) {
+        if (event.propertyName === "top") {
+            if (!souyDiv.classList.contains("show")) {
+                souyDiv.style.pointerEvents = "none";
+                ahDiv.style.pointerEvents = "none";
+            } else {
+                souyDiv.style.pointerEvents = "auto";
+                ahDiv.style.pointerEvents = "auto";
+            }
+        }
+    });
+
+    ahDiv.addEventListener("click", function() {
+        souyDiv.classList.remove("show");
+        ahDiv.classList.remove("show");
+    });
+});
+    </script>
 </body>
 </html>
