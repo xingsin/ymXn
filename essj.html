@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Xn二手手机专卖</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        /* 顶部搜索栏 */
+       .header {
+            background: linear-gradient(to right, #ff9900, #ff6600);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+       .search-box {
+            background-color: white;
+            flex: 1;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            margin-right: 10px;
+        }
+
+       .search-input {
+            border: none;
+            width: 100%;
+            height: 30px;
+            outline: none;
+            font-size: 14px;
+        }
+
+       .search-icon {
+            color: #999;
+            font-size: 18px;
+        }
+
+       .header-icon {
+            color: white;
+            font-size: 20px;
+        }
+
+        /* 导航栏 */
+       .nav {
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+       .nav-item {
+            text-align: center;
+        }
+
+       .nav-item img {
+            width: 30px;
+            height: 30px;
+        }
+
+       .nav-item p {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #666;
+        }
+
+        /* 轮播图 */
+       .slider {
+            position: relative;
+            height: 220px;
+            margin-top: 10px;
+        }
+
+       .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+       .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+        }
+
+       .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+       .active-dot {
+            background-color: white;
+        }
+
+        /* 商品分类 */
+       .category {
+            background-color: white;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+       .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+       .category-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+       .category-item {
+            width: 25%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+       .category-item img {
+            width: 50px;
+            height: 50px;
+        }
+
+       .category-item p {
+            font-size: 12px;
+            margin-top: 5px;
+            color: #666;
+        }
+
+        /* 商品展示 */
+       .product-section {
+            margin-top: 10px;
+        }
+
+       .product-title {
+            background-color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+       .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+       .product {
+            width: 48%;
+            background-color: white;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+       .product:hover{
+        border: 1px solid #4b94fc;
+       }
+       .product img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+       .product-info {
+            padding: 10px;
+        }
+
+       .product-name {
+            font-size: 14px;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: #333;
+        }
+
+       .product-price {
+            color: #ff6600;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+       .product-old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+       .product-sold {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* 加载更多按钮 */
+       .load-more {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部搜索栏 -->
+    <div class="header">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="搜索商品/店铺">
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="nav-item">
+            <img src="home.png" alt="首页">
+            <p>首页</p>
+        </div>
+        <div class="nav-item">
+            <img src="fl.png" alt="分类">
+            <p>分类</p>
+        </div>
+        <div class="nav-item">
+            <img src="gwc.png" alt="购物车">
+            <p>购物车</p>
+        </div>
+        <div class="nav-item">
+            <img src="user.png" alt="个人中心">
+            <p>个人中心</p>
+        </div>
+    </div>
+
+    <!-- 轮播图 -->
+    <div class="slider">
+        <img id="myImage" src="x.jpg" alt="轮播1">
+        <div class="slider-dots">
+            <span class="dot active-dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <!-- 商品分类 -->
+    <div class="category">
+        <div class="category-title">商品分类</div>
+        <div class="category-list">
+            <div class="category-item">
+                <img src="iphone.png" alt="电子产品">
+                <p>电子产品</p>
+            </div>
+            <div class="category-item">
+                <img src="yf.png" alt="服装">
+                <p>服装</p>
+            </div>
+            <div class="category-item">
+                <img src="bedside.png" alt="家居用品">
+                <p>家居用品</p>
+            </div>
+            <div class="category-item">
+                <img src="cake.png" alt="食品">
+                <p>食品</p>
+            </div>
+            <div class="category-item">
+                <img src="fg.png" alt="美妆">
+                <p>美妆</p>
+        </div>
+        <div class="category-item">
+            <img src="bike.png" alt="运动户外">
+            <p>运动户外</p>
+        </div>
+        <div class="category-item">
+            <img src="shone.png" alt="母婴">
+            <p>母婴</p>
+        </div>
+        <div class="category-item">
+            <img src="tx.png" alt="鞋靴">
+            <p>鞋靴</p>
+        </div>
+    </div>
+
+    <!-- 商品展示 -->
+    <div class="product-section">
+        <div class="product-title">热门商品</div>
+        <div class="product-container">
+            <div class="product">
+                <img onclick="dk()" src="6s.jpg" alt="商品1">
+                <div class="product-info">
+                    <p class="product-name">这是一款非常热门的商品，具有很多特色功能</p>
+                    <p class="product-price">￥19.9 <span class="product-old-price">￥39.9</span></p>
+                    <p class="product-sold">已售1000件</p>
+                </div>
+            </div>
+            <div class="product">
+                <img onclick="dk()" src="6s3.jpg" alt="商品2">
+                <div class="product-info">
+                    <p class="product-name">另一款受欢迎的商品，满足你的各种需求</p>
+                    <p class="product-price">￥129.9 <span class="product-old-price">￥5229.9</span></p>
+                    <p class="product-sold">已售800件</p>
+                </div>
+            </div>
+            <div class="product">
+                <img onclick="dk()" src="6s2.jpg" alt="商品3">
+                <div class="product-info">
+                    <p class="product-name">优质商品，品质有保障，快来选购</p>
+                    <p class="product-price">￥129.9 <span class="product-old-price">￥5999.9</span></p>
+                    <p class="product-sold">已售1500件</p>
+                </div>
+            </div>
+            <div class="product">
+                <img onclick="dk()" src="6s.jpg" alt="商品4">
+                <div class="product-info">
+                    <p class="product-name">特色商品，独特设计，不容错过</p>
+                    <p class="product-price">￥129.9 <span class="product-old-price">￥7999.9</span></p>
+                    <p class="product-sold">已售500件</p>
+                </div>
+            </div>
+        </div>
+        <button class="load-more">加载更多</button>
+    </div>
+    <script>
+        function xh(params) {
+          setTimeout(v=> {
+            let image = document.getElementById('myImage');
+            image.src = 'xc2.jpg';    
+          },2000)
+          setTimeout(v=> {
+            let image = document.getElementById('myImage');
+            image.src = 'xc.jpg';  
+          },4000)   
+        }
+        setInterval(xh, 4000)
+        function dk(params) {
+          window.location.href="xqy.html"
+        }
+    </script>
+</body>
+
+</html>
